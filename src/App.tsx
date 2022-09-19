@@ -1,9 +1,86 @@
-import React from 'react';
+import React from "react";
+import {
+	HashRouter as Router,
+	Routes,
+	Route,
+	Link,
+	Navigate
+} from "react-router-dom";
+import styled from 'styled-components';
 
-function App() {
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+const Main = styled.div`
+  flex-grow: 1;
+  overflow: auto;
+`;
+const Nav = styled.nav`
+  border: 1px solid blue;
+
+  > ul {
+    display: flex;
+    > li {
+			width: 33.33333%;
+			text-align: center;
+			padding: 16px;
+    }
+  }
+
+`;
+export default function App() {
 	return (
-		<div>你好</div>
+		<Router>
+			<Wrapper>
+				<Main>
+					<Routes>
+						<Route path="/tags" element={<Tags/>}></Route>
+
+						<Route path="/money" element={<Money/>}></Route>
+
+						<Route path="/statistics" element={<Statistics/>}></Route>
+
+						<Route path="/" element={<Navigate replace to="/money"/>}/>
+
+						<Route path="*" element={<NotFound/>}/>
+					</Routes>
+				</Main>
+				<Nav>
+					<ul>
+						<li>
+							<Link to="/tags">标签页</Link>
+						</li>
+						<li>
+							<Link to="/">记账页</Link>
+						</li>
+						<li>
+							<Link to="/statistics">统计页</Link>
+						</li>
+					</ul>
+				</Nav>
+			</Wrapper>
+		</Router>
 	);
 }
 
-export default App;
+function Tags() {
+	return <h2>标签页面</h2>;
+}
+
+function Money() {
+	return <h2>记账页面</h2>;
+}
+
+function Statistics() {
+	return <h2>统计页面</h2>;
+}
+
+function NotFound() {
+	return (
+		<div>
+			页面不存在，请检查网页地址是否正确！
+		</div>
+	);
+}
