@@ -5,51 +5,49 @@ import {
 	Route,
 	Navigate
 } from "react-router-dom";
-import styled from 'styled-components';
-import Nav from './components/Nav';
+import Layout from './components/Layout';
 
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-const Main = styled.div`
-  flex-grow: 1;
-  overflow: auto;
-`;
+
 export default function App() {
 	return (
 		<Router>
-			<Wrapper>
-				<Main>
-					<Routes>
-						<Route path="/tags" element={<Tags/>}></Route>
+			<Routes>
+				<Route path="/tags" element={<Tags/>}></Route>
 
-						<Route path="/money" element={<Money/>}></Route>
+				<Route path="/money" element={<Money/>}></Route>
 
-						<Route path="/statistics" element={<Statistics/>}></Route>
+				<Route path="/statistics" element={<Statistics/>}></Route>
 
-						<Route path="/" element={<Navigate replace to="/money"/>}/>
+				<Route path="/" element={<Navigate replace to="/money"/>}/>
 
-						<Route path="*" element={<NotFound/>}/>
-					</Routes>
-				</Main>
-				<Nav />
-			</Wrapper>
+				<Route path="*" element={<NotFound/>}/>
+			</Routes>
 		</Router>
 	);
 }
 
 function Tags() {
-	return <h2>标签页面</h2>;
+	return (
+		<Layout>
+			<h1>标签页面</h1>
+		</Layout>
+	);
 }
 
 function Money() {
-	return <h2>记账页面</h2>;
+	return (
+		<Layout>
+			<h1>记账页面</h1>
+		</Layout>
+	);
 }
 
 function Statistics() {
-	return <h2>统计页面</h2>;
+	return (
+		<Layout>
+			<h1>统计页面</h1>
+		</Layout>
+	);
 }
 
 function NotFound() {
