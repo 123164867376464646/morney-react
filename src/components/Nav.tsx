@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React from 'react';
+import Icon from './Icon';
+
+
 
 const NavWrapper = styled.nav`
   line-height: 24px;
@@ -12,26 +15,38 @@ const NavWrapper = styled.nav`
     > li {
       width: 33.33333%;
       text-align: center;
-      padding: 16px;
+      display: flex;
+      padding: 4px 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      > .icon {
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 
 `;
-const Nav= ()=>{
-	return(
+const Nav = () => {
+	return (
 		<NavWrapper>
 			<ul>
 				<li>
-					<Link to="/tags">标签页</Link>
+					<Icon name="label"/>
+					<Link to="/tags">标签</Link>
 				</li>
 				<li>
-					<Link to="/">记账页</Link>
+					<Icon name="money"/>
+					<Link to="/money">记一笔</Link>
 				</li>
 				<li>
-					<Link to="/statistics">统计页</Link>
+					<Icon name="statistics"/>
+					<Link to="/statistics">统计</Link>
 				</li>
 			</ul>
 		</NavWrapper>
-	)
-}
-export default Nav
+	);
+};
+export default Nav;
