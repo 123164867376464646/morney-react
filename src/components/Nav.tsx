@@ -39,7 +39,6 @@ const NavWrapper = styled.nav`
 `;
 const Nav = () => {
 
-	let activeClassName = "selected";
 	return (
 		<NavWrapper>
 			<ul>
@@ -47,7 +46,7 @@ const Nav = () => {
 					<NavLink
 						to="/tags"
 						className={({isActive}) =>
-							isActive ? activeClassName : undefined
+							isActive ? 'selected' : undefined
 						}
 					>
 						<Icon name="label"/>
@@ -57,7 +56,7 @@ const Nav = () => {
 				<li>
 					<NavLink to="/money"
 									 className={({isActive}) =>
-										 isActive ? activeClassName : undefined
+										 isActive ? 'selected' : undefined
 									 }
 					>
 						<Icon name="money"/>
@@ -67,7 +66,7 @@ const Nav = () => {
 				<li>
 					<NavLink to="/statistics"
 									 className={({isActive}) =>
-										 isActive ? activeClassName : undefined
+										 isActive ? 'selected' : undefined
 									 }
 					>
 						<Icon name="statistics"/>
