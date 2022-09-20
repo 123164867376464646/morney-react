@@ -9,21 +9,28 @@ import Tags from './views/Label';
 import Money from './views/Money';
 import Statistics from './views/Statistics';
 import NotFound from './views/NotFound';
+import styled from 'styled-components';
+
+const AppWrapper = styled.div`
+  color: #333;
+`;
 
 export default function App() {
 	return (
-		<Router>
-			<Routes>
-				<Route path="/tags" element={<Tags/>}></Route>
+		<AppWrapper>
+			<Router>
+				<Routes>
+					<Route path="/tags" element={<Tags/>}></Route>
 
-				<Route path="/money" element={<Money/>}></Route>
+					<Route path="/money" element={<Money/>}></Route>
 
-				<Route path="/statistics" element={<Statistics/>}></Route>
+					<Route path="/statistics" element={<Statistics/>}></Route>
 
-				<Route path="/" element={<Navigate replace to="/money"/>}/>
+					<Route path="/" element={<Navigate replace to="/money"/>}/>
 
-				<Route path="*" element={<NotFound/>}/>
-			</Routes>
-		</Router>
+					<Route path="*" element={<NotFound/>}/>
+				</Routes>
+			</Router>
+		</AppWrapper>
 	);
 }
