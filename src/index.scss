@@ -30,11 +30,18 @@ body {
   font-family: $font-hei;
   font-size: 16px;
   line-height: 1.2;
+  background: rgb(244, 244, 244);
 }
-button{
+
+:focus {
+  outline: none;
+}
+
+button {
   font-family: inherit;
 }
-.icon{
+
+.icon {
   width: 1em;
   height: 1em;
 }
