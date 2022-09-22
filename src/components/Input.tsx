@@ -15,7 +15,7 @@ const Label = styled.label`
     width: 100%;
     background: none;
     border: none;
-    height: 72px;
+    height: 44px;
   }
 `;
 type Props = {
