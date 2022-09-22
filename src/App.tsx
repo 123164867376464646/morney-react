@@ -10,6 +10,7 @@ import Money from './views/Money';
 import Statistics from './views/Statistics';
 import NotFound from './views/NotFound';
 import styled from 'styled-components';
+import {Tag} from './views/Tag';
 
 const AppWrapper = styled.div`
   color: #333;
@@ -21,6 +22,8 @@ export default function App() {
 			<Router>
 				<Routes>
 					<Route path="/tags" element={<Tags/>}></Route>
+
+					<Route path='/tags/:tag' element={<Tag/>}></Route>
 
 					<Route path="/money" element={<Money/>}></Route>
 
