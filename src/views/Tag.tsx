@@ -1,4 +1,4 @@
-import {useTags} from '../useTags';
+import {useTags} from '../hooks/useTags';
 import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
