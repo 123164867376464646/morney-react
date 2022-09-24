@@ -18,8 +18,17 @@ export const useRecords = () => {
 		window.localStorage.setItem('records', JSON.stringify(records));
 	}, [records]);
 	const addRecord = (newRecord: newRecordItem) => {
+		if(newRecord.amount <= 0) {
+			alert('请检查金额')
+			return false;
+		}
+		if(newRecord.tagIds.length === 0) {
+			alert('请至少选择一种标签');
+			return false;
+		}
 		const record = {...newRecord, createAt: new Date().toISOString()};
 		setRecords([...records, record]);
+		return true;
 	};
 	return {records, addRecord};
 };
