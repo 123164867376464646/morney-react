@@ -1,5 +1,5 @@
 import Nav from './Nav';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -11,12 +11,27 @@ const Main = styled.div`
   flex-grow: 1;
   overflow: auto;
 `;
+type Props = {
+	className?: string,
+	scrollTop?: number
+} & React.HTMLAttributes<any>
 
-const Layout = (props:any) => {
+const Layout: React.FC<Props> = (props) => {
+	const {className, scrollTop, children, ...rest} = props;
+	const mainRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		setTimeout(() => {
+			if(!mainRef.current) {return;}
+			console.log(props.scrollTop);
+			mainRef.current.scrollTop = props.scrollTop!;
+			console.log(mainRef.current.scrollTop);
+		}, 0);
+
+	}, [props.scrollTop]);
 	return (
 		<div>
 			<Wrapper>
-				<Main className={props.className}>
+				<Main ref={mainRef} className={props.className} data-x={'fuck'}>
 					{props.children}
 				</Main>
 				<Nav/>
@@ -25,4 +40,4 @@ const Layout = (props:any) => {
 	);
 };
 
-export default Layout
+export default Layout;
