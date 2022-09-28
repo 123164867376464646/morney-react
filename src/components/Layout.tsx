@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 const Main = styled.div`
   flex-grow: 1;
   overflow: auto;
+	
 `;
 type Props = {
 	className?: string,
@@ -29,7 +30,7 @@ const Layout: React.FC<Props> = (props) => {
 	return (
 		<div>
 			<Wrapper>
-				<Main ref={mainRef} className={props.className} data-x={'fuck'}>
+				<Main ref={mainRef} className={props.className}>
 					{props.children}
 				</Main>
 				<Nav/>
