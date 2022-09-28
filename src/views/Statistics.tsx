@@ -127,6 +127,8 @@ function Statistics() {
 
 	const keys = keyValueList().map(item => item.key);
 	const values = keyValueList().map(item => item.value);
+	console.log(values);
+
 	const [option, setOption] = useState({
 		tooltip: {
 			trigger: 'item',
@@ -172,14 +174,18 @@ function Statistics() {
 		]
 	});
 
-	console.log(values);
 
 	// useEffect(() => {
-	// 	setOption({
-	// 		...option,
+	// 	setOption(
+	// 		{
 	//
-	// 	});
+	// 		}
+	// 	);
 	// }, [option]);
+
+
+
+
 
 	const Beautify = (string: string) => {
 		const day = dayjs(string);
