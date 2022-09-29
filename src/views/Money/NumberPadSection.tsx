@@ -8,7 +8,6 @@ type Props = {
 	onOk?: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
-	// const output = props.value.toString();
 	const [output, _setOutPut] = useState(props.value.toString());
 	const setOutput = (output: string) => {
 		let newOutput: string;
@@ -26,7 +25,10 @@ const NumberPadSection: React.FC<Props> = (props) => {
 		const text = (e.target as HTMLButtonElement).textContent;
 		if(text === null) {return;}
 		if(text === 'OK') {
-			if(props.onOk) {props.onOk();}
+			if(props.onOk) {
+				props.onOk();
+				_setOutPut('0');
+			}
 			return;
 		}
 		setOutput(generateOutput(text, output));

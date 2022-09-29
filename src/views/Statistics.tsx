@@ -81,7 +81,7 @@ function Statistics() {
 			}
 		}
 		result.map(group => {
-			group.total = group.items.reduce((sum, item) => {
+			return group.total = group.items.reduce((sum, item) => {
 				return sum + item.amount;
 			}, 0);
 		});
