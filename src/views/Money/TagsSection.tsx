@@ -27,14 +27,15 @@ const Wrapper = styled.section`
 
       }
     }
+		
   }
 
   > button {
     background: none;
     border: none;
     padding: 1px 4px;
-    border-bottom: 1px solid #333;
-    color: #666;
+    border-bottom: 1px solid ;
+    color: #999;
     margin-top: 8px;
   }
 `;

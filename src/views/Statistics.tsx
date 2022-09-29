@@ -20,7 +20,6 @@ const ChartWrapper = styled.div`
     display: none;
   }
 `;
-
 const TypeSectionWrapper = styled.div`
   background: white;
 `;
@@ -48,11 +47,9 @@ const Header = styled.h3`
 
 function Statistics() {
 	const [type, setType] = useState<'-' | '+'>('-');
-
 	const {records} = useRecords();
 	const {getName} = useTags();
 	const hash: { [K: string]: RecordItem[] } = {};
-
 	const selectedRecords = records.filter(r => r.type === type);
 	selectedRecords.map(r => {
 		const key = day(r.createAt).format('YYYY年MM月DD日');
@@ -62,15 +59,6 @@ function Statistics() {
 		hash[key].push(r);
 		return selectedRecords;
 	});
-	const array = Object.entries(hash)
-		.sort((a, b) => {
-			if(a[0] === b[0]) return 0;
-			if(a[0] > b[0]) return -1;
-			if(a[0] < b[0]) return 1;
-			return 0;
-		});
-
-
 	const UseGroupedList = () => {
 		const {records} = useRecords();
 		const newList = clone(records)
@@ -99,9 +87,7 @@ function Statistics() {
 		});
 		return result;
 	};
-
 	const keyValueList = () => {
-
 		const today = new Date();
 		const array1 = [];
 		for(let i = 0; i <= 29; i++) {
@@ -124,12 +110,9 @@ function Statistics() {
 		}
 		return array1;
 	};
-
 	const keys = keyValueList().map(item => item.key);
 	const values = keyValueList().map(item => item.value);
-	console.log(values);
-
-	const [option, setOption] = useState({
+	const option = {
 		tooltip: {
 			trigger: 'item',
 			triggerOn: 'mousemove|click',
@@ -172,21 +155,7 @@ function Statistics() {
 				type: 'line',
 			}
 		]
-	});
-
-
-	// useEffect(() => {
-	// 	setOption(
-	// 		{
-	//
-	// 		}
-	// 	);
-	// }, [option]);
-
-
-
-
-
+	};
 	const Beautify = (string: string) => {
 		const day = dayjs(string);
 		const now = dayjs();
@@ -203,11 +172,9 @@ function Statistics() {
 		}
 	};
 	const ref = useRef<HTMLDivElement>(null);
-
 	useEffect(() => {
 		ref.current!.scrollLeft = ref.current!.scrollWidth;
 	}, []);
-
 	return (
 		<Layout>
 			<TypeSectionWrapper>
@@ -220,15 +187,15 @@ function Statistics() {
 				</div>
 			</ChartWrapper>
 			{UseGroupedList().map((group, index) =>
-				<div>
-					<Header key={index}>
+				<div key={index}>
+					<Header>
 						{Beautify(group.title)}
 						<span>
 							￥{group.total}
 						</span>
 					</Header>
 					<div>
-						{records.map((r, index) => {
+						{group.items.map((r, index) => {
 							return (
 								<Items key={index}>
 									<div className="tags oneLine">
@@ -250,7 +217,6 @@ function Statistics() {
 					</div>
 				</div>
 			)}
-
 		</Layout>
 	);
 }
