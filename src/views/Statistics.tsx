@@ -8,6 +8,8 @@ import day from 'dayjs';
 import {LineBarChart} from '../components/LineBarChart';
 import _, {clone} from 'lodash';
 import dayjs from 'dayjs';
+import {Space} from '../components/Space';
+import {Center} from '../components/Center';
 
 const ChartWrapper = styled.div`
   overflow: auto;
@@ -60,7 +62,6 @@ function Statistics() {
 		return selectedRecords;
 	});
 	const UseGroupedList = () => {
-		const {records} = useRecords();
 		const newList = clone(records)
 			.filter(r => r.type === type)
 			.sort((a, b) => dayjs(b.createAt).valueOf() - dayjs(a.createAt).valueOf());
@@ -89,16 +90,16 @@ function Statistics() {
 	};
 	const keyValueList = () => {
 		const today = new Date();
-		const array1 = [];
+		const array = [];
 		for(let i = 0; i <= 29; i++) {
 			const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD');
 			const found = _.find(UseGroupedList(), {
 				title: dateString
 			});
-			array1.push({
+			array.push({
 				key: dateString, value: found ? found.total : 0
 			});
-			array1.sort((a, b) => {
+			array.sort((a, b) => {
 				if(a.key > b.key) {
 					return 1;
 				} else if(a.key === b.key) {
@@ -108,7 +109,7 @@ function Statistics() {
 				}
 			});
 		}
-		return array1;
+		return array;
 	};
 	const keys = keyValueList().map(item => item.key);
 	const values = keyValueList().map(item => item.value);
@@ -175,6 +176,7 @@ function Statistics() {
 	useEffect(() => {
 		ref.current!.scrollLeft = ref.current!.scrollWidth;
 	}, []);
+	const displayRecords = records.filter(r => r.type === type);
 	return (
 		<Layout>
 			<TypeSectionWrapper>
@@ -186,15 +188,15 @@ function Statistics() {
 					<LineBarChart option={option}/>
 				</div>
 			</ChartWrapper>
-			{UseGroupedList().map((group, index) =>
-				<div key={index}>
-					<Header>
-						{Beautify(group.title)}
-						<span>
+			{displayRecords.length > 0 ?
+				UseGroupedList().map((group, index) =>
+					<div key={index}>
+						<Header>
+							{Beautify(group.title)}
+							<span>
 							￥{group.total}
 						</span>
-					</Header>
-					<div>
+						</Header>
 						{group.items.map((r, index) => {
 							return (
 								<Items key={index}>
@@ -215,8 +217,18 @@ function Statistics() {
 							);
 						})}
 					</div>
+				) :
+				<div>
+					<Space/>
+					<Space/>
+					<Space/>
+					<Center>
+						<span>
+							目前没有相关记录，快去记一笔吧(*￣︶￣)
+						</span>
+					</Center>
 				</div>
-			)}
+			}
 		</Layout>
 	);
 }
