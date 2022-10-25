@@ -60,7 +60,7 @@ const Nav = () => {
 									 }
 					>
 						<Icon name="money"/>
-						记一笔
+						记账
 					</NavLink>
 				</li>
 				<li>
